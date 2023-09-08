@@ -16,7 +16,13 @@ class DetailsPage extends StatelessWidget {
               case HeroFlightDirection.push:
                 return Material(
                   color: Colors.transparent,
-                  child: toHeroContext.widget,
+                  child: ScaleTransition(
+                      scale: animation.drive(
+                        Tween<double>(begin: 0, end: 1).chain(
+                          CurveTween(curve: Curves.fastOutSlowIn),
+                        ),
+                      ),
+                      child: toHeroContext.widget),
                 );
               case HeroFlightDirection.pop:
                 return Material(
